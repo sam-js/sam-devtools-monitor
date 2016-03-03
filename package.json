@@ -1,7 +1,7 @@
 {
   "name": "sam-devtools-monitor",
   "version": "0.0.1",
-  "description": "Monitor for SAM-JS DevTools",
+  "description": "Monitor for SAM DevTools",
   "main": "./lib/index.js",
   "scripts": {
     "build": "npm run clean && ./node_modules/.bin/babel src/ --out-dir lib/",
