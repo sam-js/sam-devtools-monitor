@@ -1,0 +1,30 @@
+{
+  "name": "sam-devtools-monitor",
+  "version": "0.0.1",
+  "description": "Monitor for SAM-JS DevTools",
+  "main": "./lib/index.js",
+  "scripts": {
+    "build": "npm run clean && ./node_modules/.bin/babel src/ --out-dir lib/",
+    "watch": "npm run build -- --watch",
+    "clean": "rm -rf lib && mkdir lib",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepublish": "npm run build"
+  },
+  "author": "Gunar C. Gessner <gunar@gunargessner.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:sam-js/sam-devtools-monitor.git"
+  },
+  "keywords": [
+    "sam"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.6.4",
+    "babel-core": "^6.5.2",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-es2015-loose": "^7.0.0",
+    "babel-preset-react": "6.3.13",
+    "babel-preset-stage-0": "^6.3.13"
+  }
+}
