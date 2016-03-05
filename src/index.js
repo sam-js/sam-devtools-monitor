@@ -1,19 +1,25 @@
 const style = {
   dock: `
-    background-color: #55ddff;
-    border-left: 1px solid black;
+    background-color: #222;
+    color: white;
     width: 300px;
     display: block;
     position: absolute;
     right: 0;
     top: 0;
-    font-family: Courier, monospace, sans-serif;
+    font-family: monospace, sans-serif;
     height: 100%;
-    overflow-y: scroll`,
+    overflow-y: scroll;`,
   snapshot: `
-    border-top: 2px solid black;
-    cursor: pointer`,
-}
+    background-color: #666;
+    cursor: pointer;
+    margin-bottom: 2px;
+    padding: 5px 10px;
+    overflow: auto;`,
+  nap: `
+    border: 2px solid white;
+    `,
+  }
 
 const keys = ['@@nap']
 
@@ -37,10 +43,11 @@ const render = (snapshots, loadSnapshot) => {
   const node = getNode()
   snapshots.forEach((snapshot, i) => {
     const { store, dataset } = snapshot
+    const fromNAP = dataset['@@nap'] !== undefined
     const el = document.createElement('div')
     el.addEventListener('click', loadSnapshot.bind(null, i))
-    el.style = style.snapshot
-    let html = (dataset['@@nap'] ? `<strong>NAP</strong>` : '')
+    el.style = style.snapshot + (fromNAP ? style.nap : '')
+    let html = (fromNAP ? `<strong>NAP</strong>` : '')
     const filteredStore = filterKeys(store)
     html = html + `<pre>present(${JSON.stringify(dataset)})</pre><pre>Store -> ${JSON.stringify(store)}</pre>`
     el.innerHTML = html
