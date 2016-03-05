@@ -19,6 +19,9 @@ const style = {
   nap: `
     border: 2px solid white;
     `,
+  napLoop: `
+    background-color: #FF3333;
+  `,
   }
 
 const keys = ['@@nap']
@@ -44,12 +47,17 @@ const render = (snapshots, loadSnapshot) => {
   snapshots.forEach((snapshot, i) => {
     const { store, dataset } = snapshot
     const fromNAP = dataset['@@nap'] !== undefined
+    const napLoop = dataset['@@napLoop'] !== undefined
     const el = document.createElement('div')
     el.addEventListener('click', loadSnapshot.bind(null, i))
-    el.style = style.snapshot + (fromNAP ? style.nap : '')
+    el.style = style.snapshot + (fromNAP ? style.nap : '') + (napLoop ? style.napLoop : '')
     let html = (fromNAP ? `<strong>NAP</strong>` : '')
-    const filteredStore = filterKeys(store)
-    html = html + `<pre>present(${JSON.stringify(dataset)})</pre><pre>Store -> ${JSON.stringify(store)}</pre>`
+    if (napLoop) {
+      html = html + `<h1>infinite NAP loop</h1><p>${dataset['@@napLoop']}</p>`
+    } else {
+      const filteredStore = filterKeys(store)
+      html = html + `<pre>present(${JSON.stringify(dataset)})</pre><pre>Store -> ${JSON.stringify(store)}</pre>`
+    }
     el.innerHTML = html
     node.appendChild(el)
   })
