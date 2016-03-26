@@ -1,6 +1,6 @@
 {
   "name": "sam-devtools-monitor",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Monitor for SAM DevTools",
   "main": "./lib/index.js",
   "scripts": {
